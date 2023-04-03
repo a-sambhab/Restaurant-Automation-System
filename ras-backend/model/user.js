@@ -16,6 +16,10 @@ const User = new mongoose.Schema({
     emp_id: {
         type: String,
         required: true,
+    },
+    loggedin: {
+        type: Boolean,
+        default: true,
     }
 });
 
