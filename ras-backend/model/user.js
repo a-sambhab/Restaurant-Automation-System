@@ -19,7 +19,7 @@ const User = new mongoose.Schema({
     },
     loggedin: {
         type: Boolean,
-        default: true,
+        default: false,
     }
 });
 

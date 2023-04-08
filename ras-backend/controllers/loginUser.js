@@ -1,26 +1,34 @@
 const User = require("../model/user")
 
 const loginUser = async (req,res) => {
-    const fetchuser = await User.findOne({name: req.body.name});
-    if(!fetchuser){
-        res.send({
-            "status": 201,
-            "message": "user does not exist"
-        })
-    }
-    if(fetchuser.password===req.body.password){
-        fetchuser.loggedin = true;
-        const saveuser = await fetchuser.save();
-        res.send({
-            "status": 200,
-            "message": "logged in successfully",
-            "user": saveuser
-        })
-    }
-    else{
-        res.send({
-            "status": 201,
-            "message": "password wrong"
+    try {
+        if(!req.headers.name||!req.headers.password){
+            throw "Username or Password not provided";
+        }
+        else{
+            const fetchuser = await User.findOne({name: req.headers.name});
+            if(!fetchuser){
+                throw "User does not exist";
+            }
+            if(fetchuser.password===req.headers.password){
+                fetchuser.loggedin = true;
+                const saveuser = await fetchuser.save();
+                res.status(200).send({
+                    "message": "Logged In Successfully",
+                    "user": {
+                        name: saveuser.name,
+                        role: saveuser.role,
+                        emp_id: saveuser.emp_id,
+                    },
+                })
+            }
+            else{
+                throw "Password Wrong"
+            }
+        }
+    } catch (err) {
+        res.status(203).send({
+            "message": err
         })
     }
 }

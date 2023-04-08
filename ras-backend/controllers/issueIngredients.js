@@ -15,8 +15,7 @@ const issueIngredients = async (req,res) => {
             }
             else{
                 ingredient.currentusage+=(items[itemkey]*value);
-                res.send({
-                    "status": 201,
+                res.status(201).send({
                     "message": "Not enough Ingredients. Issue Purchase Order",
                 })
             }
@@ -24,8 +23,7 @@ const issueIngredients = async (req,res) => {
             
         }
     })
-    res.send({
-        "status": 200,
+    res.status(200).send({
         "message": "Ingredients Issued",
     })
 }

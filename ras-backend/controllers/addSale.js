@@ -1,3 +1,4 @@
+const items = require("../model/items");
 const Sales = require("../model/sales");
 
 const addSale = async (req,res) => {
@@ -5,10 +6,10 @@ const addSale = async (req,res) => {
         tableNumber: req.body.tableNumber,
         content: req.body.orders,
         totalBill: req.body.totalBill,
+        salesID: new Date(),
     })
-    newSale.salesID = new Date();
-    const newSalesave = await newSale.save();
-    res.send(newSalesave);
+    const newsalesave = await newSale.save();
+    res.send(newsalesave);
     // console.log(newSalesave.date.getDate());
 }
 
