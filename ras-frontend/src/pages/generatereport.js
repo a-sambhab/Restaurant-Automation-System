@@ -1,7 +1,6 @@
 import Navbar from '@/components/Navbar'
 import axios from 'axios'
 import React, { useState } from 'react'
-import { headers } from '../../next.config'
 import DynamicTable from '@/components/DynamicTable'
 
 const generatereport = () => {
