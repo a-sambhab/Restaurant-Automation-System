@@ -2,7 +2,7 @@ const User = require("../model/user")
 
 const addUser = async (req,res) => {
     try {
-        if(!req.headers.name||!req.headers.password){
+        if(!req.body.name||!req.body.password){
             throw "Username or Password not provided";
         }
         else{

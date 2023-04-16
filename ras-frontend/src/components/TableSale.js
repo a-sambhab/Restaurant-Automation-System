@@ -29,10 +29,11 @@ const TableSale = (props) => {
         // console.log()
     }
     const deleteorder = (e) => {
-        console.log(e);
-        delete currentsale[props.tableNumber-1].content[e];
-        setCurrentsale(currentsale);
-        sessionStorage.setItem("tablesales", JSON.stringify(currentsale));
+        const {[props.tableNumber-1]: currenttable, ...resttable} = currentsale;
+        const {content: currentcontent, ...restdata} = currenttable
+        const {[e]: item, ...restitem}=currentcontent
+        setCurrentsale({...resttable, [props.tableNumber-1]:{...restdata, content: restitem}});
+        sessionStorage.setItem("tablesales", JSON.stringify({...resttable, [props.tableNumber-1]:{...restdata, content: restitem}}));
     }
     const handleitem = (e) => {
         setItem(e.target.value);

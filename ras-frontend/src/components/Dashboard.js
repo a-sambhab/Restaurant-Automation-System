@@ -12,7 +12,7 @@ const Dashboard = (props) => {
             <div className='w-full h-[100%] bg-[#C0DBEA] flex justify-center items-center'>
                 <div className='w-[50%] h-[50%] flex flex-col justify-evenly items-center'>
                     <Link href='/addsale' className='w-[75%] h-[8%] flex justify-center items-center bg-[#E8A0BF]'>Generate Bill</Link>
-                    {user.role==="sales clerk"?
+                    {user.role==="Sales Clerk"?
                         <></>
                         :
                         <>
@@ -25,8 +25,12 @@ const Dashboard = (props) => {
                         <Link href='/createmenu' className='w-[75%] h-[8%] flex justify-center items-center bg-[#E8A0BF]'>Generate Menu</Link>
                         </>
                     }
-                    {user.role==="owner"?
+                    {user.role==="Owner"||user.role==="owner"?
+                    <>
                         <Link href='/generatereport' className='w-[75%] h-[8%] flex justify-center items-center bg-[#E8A0BF]'>Generate Report</Link>
+
+                        <Link href='/adduser' className='w-[75%] h-[8%] flex justify-center items-center bg-[#E8A0BF]'>Add User</Link>
+                    </>
                         :
                         <></>
                     }
